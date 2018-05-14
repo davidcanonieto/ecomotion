@@ -43,6 +43,12 @@
                             Usuario/contraseña erroneos
                         </div>';
                 }
+                if (isset($_GET["signup"]) && $_GET["signup"] == 'false') {
+                    echo '<div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Usuario ya registrado
+                        </div>';
+                }
             ?>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Usuario" required="required" name="email">
