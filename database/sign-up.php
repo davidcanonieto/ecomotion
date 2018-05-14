@@ -7,7 +7,7 @@
 		    die();
 		}
 
-		if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['birthdate'])) {
+		if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['date'])) {
             
             echo "puta";
 
@@ -85,8 +85,7 @@
 
 			}
 			else{
-				echo "Email ya registrado";
-				echo "<a href='login.php'>Entrar ahora</a>";
+				header("location:../index.php?signup=false");
 
 			}
 
@@ -94,5 +93,3 @@
 
 		}
     ?>
-    hola
-    
