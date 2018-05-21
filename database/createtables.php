@@ -18,7 +18,7 @@
 		    echo "Error creating database: " . $conn->error;
 		}
 
-		$administrator = "CREATE TABLE ecomove.users (
+		$administrator = "CREATE TABLE ecomove.admin (
 				email VARCHAR(50), 
 				password VARCHAR(50) NOT NULL,
 				PRIMARY KEY(email)
@@ -62,6 +62,7 @@
 		$cars = "CREATE TABLE ecomove.cars (
 				maker VARCHAR(30),
 				model VARCHAR(30),
+				picture VARCHAR(30),
 				year int,
 				seats int,
 				license_plate VARCHAR(10) NOT NULL,
@@ -114,8 +115,5 @@
 
 
 		$conn->close();
-
-
-
 
 	?>

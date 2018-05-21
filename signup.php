@@ -1,27 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<form action="" method="post" enctype="multipart/form-data">
-		Nombre: <input type="text" name="name" required><br>
-		Apellido: <input type="text" name="lastname" required><br>
-		Email: <input type="text" name="email" required><br>
-		Contraseña: <input type="text" name="password" required><br>
-		Fecha de nacimiento: <input type="date" name="birthdate" required><br>
-		Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-		<input type="submit" value="Registrar">
-	</form>
-
-	
-
-
-	
-</body>
-</html> -->
-
 <!doctype html>
 <html lang="en">
 
