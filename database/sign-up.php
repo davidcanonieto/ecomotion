@@ -1,15 +1,5 @@
 <?php  
-
-		function redirect($url) {
-		    ob_start();
-		    header('Location: '.$url);
-		    ob_end_flush();
-		    die();
-		}
-
 		if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['date'])) {
-            
-            echo "puta";
 
 			$servername = "localhost";
 			$username = "root";
@@ -77,7 +67,7 @@
 
 				if ($conn->query($sql) === TRUE) {
 
-				    redirect("login.php");
+				    header("location:../index.php");
 				} else {
 					
 				    echo "Error: " . $sql . "<br>" . $conn->error;

@@ -1,5 +1,6 @@
 <?php  
 
+	session_start();
 	/*ACCESO A LA BASE DE DATOS*/
 	
 	$servername = "localhost";
@@ -27,11 +28,11 @@
 
 		if (password_verify($password, $row['password'])) { 
 
-			/*$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
+			$_SESSION['loggedin'] = true;
+			$_SESSION['id'] = $row['id'];
 			$_SESSION['start'] = time();
 			$_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
-			*/
+			
 
 			if (password_needs_rehash($row['password'], PASSWORD_DEFAULT)) {
 
@@ -40,6 +41,8 @@
 				$newPassword = password_hash($row['password'], PASSWORD_DEFAULT);
 
 				$sql = "UPDATE ecomove.users SET password = '" + $newPassword + "' WHERE email = '$email'";
+
+				$conn->query($sql);
 			}
 
 			header("location:../home.php");
