@@ -22,14 +22,32 @@
 <body>
 	<div class="container">
 		<h2 id="text-center">Enter Location: </h2>
-		<form id="location-form">
+		<form id="origin-form">
 			<input type="text" id="location-input" class="form-control form-control-lg">
 			<br>
+			<button onclick="getLocation()">Usar ubicación actual</button>
 			<button type="submit" class="btn btn-primary btn-block">Submit</button>
 		</form>
 		<div class="card-block" id="formatted-address"></div>
 		<div class="card-block" id="geometry"></div>
+		<form id="destiny-form">
+			<input type="text" id="location-input" class="form-control form-control-lg">
+			<br>
+			<button type="submit" class="btn btn-primary btn-block">Submit</button>
+		</form>
+		<form id="time">
+			<input type="date" id="date" class="form-control form-control-lg">
+			<br>
+			<input type="time" id="hour" class="form-control form-control-lg">
+			<br>
+			<input type="number" id="seats" class="form-control form-control-lg">
+			<br>
+			<button type="submit" class="btn btn-primary btn-block">Submit</button>
+		</form>
+
 	</div>
+
+	
 
 	<!-- <div id="map"></div> -->
 

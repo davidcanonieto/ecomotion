@@ -1,13 +1,26 @@
-var lat;
-var lng;
+var originlat;
+var originlng;
+var destinylat;
+var destinylng;
 
 
 window.onload = function () { 
-    var locationForm = document.getElementById('location-form');
-    locationForm.addEventListener('submit', geocode);
+    var originForm = document.getElementById('origin-form');
+    originForm.addEventListener('submit', setOrigin);
+
+    var destinyForm = document.getElementById('destiny-form');
+    destinyForm.addEventListener('submit', setDestiny);
 }
 
-function geocode(e) {
+function setOrigin(e) {
+    geocode(e, originlat, originlng);
+}
+
+function setDestiny(e){
+    geocode(e, destinylat, destinylng);
+}
+
+function geocode(e, lat, lng) {
     // Prevent actual submit
     e.preventDefault();
 
@@ -33,14 +46,14 @@ function geocode(e) {
             // Geometry
             lat = response.data.results[0].geometry.location.lat;
             lng = response.data.results[0].geometry.location.lng;
-        //     var geometryOutput = `
-        //   <ul class="list-group">
-        //     <li class="list-group-item"><strong>Latitude</strong>: ${lat}</li>
-        //     <li class="list-group-item"><strong>Longitude</strong>: ${lng}</li>
-        //   </ul>
-        // `;
+            var geometryOutput = `
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Latitude</strong>: ${lat}</li>
+            <li class="list-group-item"><strong>Longitude</strong>: ${lng}</li>
+          </ul>
+        `;
 
-            initMap();
+            // initMap();
 
             // Output to app
             document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
@@ -66,3 +79,19 @@ function initMap() {
 function destinationAddress() {
     window.location = `./destination.php?lat=${lat}&lng=${lng}`;
 }
+
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById('geometry').innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById('geometry').innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+}
+
