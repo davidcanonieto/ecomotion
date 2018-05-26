@@ -50,6 +50,7 @@
 				trip_date datetime NOT NULL,
 				start_point VARCHAR(100),
 				end_point VARCHAR(100),
+				seats int,
 				cost DECIMAL(6,2),
 				license_plate VARCHAR(30) NOT NULL,
 				/*status boolean not null default 0,*/ 
@@ -108,6 +109,7 @@
 			echo "<br>";
 		    
 		   if ($conn->query($sql) === TRUE) {
+			   header("location:../backOffice.php");
 			} else {
 			    echo "Error creating table: " . $conn->error;
 			}

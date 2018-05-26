@@ -13,11 +13,8 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
     session_start();
 
-
     echo $_SESSION['id'];
     echo $_SESSION['credit'];
-
-
 
     $recarga = $_POST['recarga'];
     $password = $_POST['password'];
@@ -46,7 +43,7 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
         } else {
             header("location:../topup.php?success=false");
         }
-    } 
+    }
 
     $conn->close();
 }

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<!-- <div class="container">
 		<h2 id="text-center">Enter Location: </h2>
 		<form id="origin-form">
 			<input type="text" id="location-input" class="form-control form-control-lg">
@@ -42,16 +42,45 @@
 			<br>
 			<input type="number" id="seats" class="form-control form-control-lg">
 			<br>
-			<button type="submit" class="btn btn-primary btn-block">Submit</button>
+			
 		</form>
 
+	</div> -->
+
+	<div class="container">
+		<h2 id="text-center">Enter Location: </h2>
+		<form id="origin-form" action="database/login.php" method="post">
+			<div class="form-group">
+				<label for="origin-input">Origen:</label>
+				<input type="text" name="origin-input" id="origin-input" 
+					class="form-control form-control-lg" onfocusout="showOrigin(event)">
+				<p id="origin-address"></p>
+			</div>
+			<div class="form-group">
+				<label for="destination-input">Destino:</label>
+				<input type="text" name="destination-input" id="destination-input" 
+					class="form-control form-control-lg" onfocusout="showDestination(event)">
+				<p id="destination-address"></p>
+			</div>
+			<div class="form-group">
+				<label for="destination-input">Fecha:</label>
+				<input type="date" name="date" class="form-control form-control-lg">
+				<br>
+				<input type="time" name="hour" class="form-control form-control-lg" value="13:30">
+				<br>
+				<input type="number" name="seats" class="form-control form-control-lg" min="1" max="6">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-block">Submit</button>
+			</div>
+		</form>
 	</div>
 
-	
+
 
 	<!-- <div id="map"></div> -->
 
-	<button onclick="destinationAddress();">Destino</button>
+	<!-- <button onclick="destinationAddress();">Destino</button> -->
 	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQiG0nfV43h4GFJQe2Fkh3VPkaoTjXNA"> -->
 	</script>
 </body>
