@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="combustible">Combustible:</label>
-                <select class="form-control" name="combustible">
+                <select class="form-control" name="combustible" required="required">
                     <option value="01">Eléctrico</option>
                     <option value="02">Híbrido</option>
                     <option value="03">Gasolina</option>

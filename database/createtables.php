@@ -37,25 +37,25 @@
 				PRIMARY KEY(id, email)
 				)";
 
-		$pilots = "CREATE TABLE ecomove.pilots (
-				id int NOT NULL,
-				license boolean not null default 0, 
-				FOREIGN KEY(id) REFERENCES users(id)
-				)";
+		// $pilots = "CREATE TABLE ecomove.pilots (
+		// 		id int NOT NULL,
+		// 		license boolean not null default 0, 
+		// 		FOREIGN KEY(id) REFERENCES users(id)
+		// 		)";
 
 		
 
 		$trips = "CREATE TABLE ecomove.trips (
 				trip_code int NOT NULL AUTO_INCREMENT,
+				id int NOT NULL,
 				trip_date datetime NOT NULL,
 				start_point VARCHAR(100),
 				end_point VARCHAR(100),
 				seats int,
 				cost DECIMAL(6,2),
-				license_plate VARCHAR(30) NOT NULL,
 				/*status boolean not null default 0,*/ 
 				PRIMARY KEY(trip_code),
-				FOREIGN KEY (license_plate) REFERENCES cars(license_plate)
+				FOREIGN KEY(id) REFERENCES users(id)
 				)";
 
 		
@@ -81,7 +81,7 @@
 		$possessions = "CREATE TABLE ecomove.possessions (
 				id int NOT NULL,
 				license_plate VARCHAR(30) NOT NULL, 
-				FOREIGN KEY (id) REFERENCES pilots(id),
+				FOREIGN KEY (id) REFERENCES users(id),
 				FOREIGN KEY (license_plate) REFERENCES cars(license_plate)
 				)";
 

@@ -8,58 +8,72 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
 	 crossorigin="anonymous">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<title>My Geocode App</title>
-	<style>
-		#map {
-			width: 100%;
-			height: 400px;
-			background-color: grey;
-		}
-	</style>
 	<script src="./js/maps-api.js"></script>
+
+	<?php
+
+		session_start();
+
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+
+		$conn = mysqli_connect($servername, $username, $password);
+
+		if (!$conn) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$id = $_SESSION['id'];
+
+		$sql = "SELECT * FROM ecomove.possessions WHERE id = '$id'";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+
+			$row = $result->fetch_array(MYSQLI_ASSOC);
+
+			$matricula = $row['license_plate'];
+
+			$sql = "SELECT * FROM ecomove.cars WHERE license_plate = '$matricula'";
+
+			$result1 = $conn->query($sql);
+
+			if ($result1->num_rows > 0) {
+
+				$row1 = $result1->fetch_array(MYSQLI_ASSOC);
+				$seats = $row1['seats'];
+			}
+			else {
+			    echo  $conn->error;
+			}
+		}
+		else {
+			echo $conn->error;
+			header("location:./message.php?message=add-car");
+
+		}
+
+		$conn->close();
+	?>
 </head>
 
 <body>
-	<!-- <div class="container">
-		<h2 id="text-center">Enter Location: </h2>
-		<form id="origin-form">
-			<input type="text" id="location-input" class="form-control form-control-lg">
-			<br>
-			<button onclick="getLocation()">Usar ubicación actual</button>
-			<button type="submit" class="btn btn-primary btn-block">Submit</button>
-		</form>
-		<div class="card-block" id="formatted-address"></div>
-		<div class="card-block" id="geometry"></div>
-		<form id="destiny-form">
-			<input type="text" id="location-input" class="form-control form-control-lg">
-			<br>
-			<button type="submit" class="btn btn-primary btn-block">Submit</button>
-		</form>
-		<form id="time">
-			<input type="date" id="date" class="form-control form-control-lg">
-			<br>
-			<input type="time" id="hour" class="form-control form-control-lg">
-			<br>
-			<input type="number" id="seats" class="form-control form-control-lg">
-			<br>
-			
-		</form>
-
-	</div> -->
-
 	<div class="container">
 		<h2 id="text-center">Enter Location: </h2>
-		<form id="origin-form" action="database/login.php" method="post">
+		<form id="origin-form" onsubmit="saveTrip(event)" action="#" method="post" name="newTripForm">
 			<div class="form-group">
 				<label for="origin-input">Origen:</label>
 				<input type="text" name="origin-input" id="origin-input" 
-					class="form-control form-control-lg" onfocusout="showOrigin(event)">
+					class="form-control form-control-lg" onfocusout="showOrigin()" required>
 				<p id="origin-address"></p>
 			</div>
 			<div class="form-group">
 				<label for="destination-input">Destino:</label>
 				<input type="text" name="destination-input" id="destination-input" 
-					class="form-control form-control-lg" onfocusout="showDestination(event)">
+					class="form-control form-control-lg" onfocusout="showDestination()" required>
 				<p id="destination-address"></p>
 			</div>
 			<div class="form-group">
@@ -68,21 +82,13 @@
 				<br>
 				<input type="time" name="hour" class="form-control form-control-lg" value="13:30">
 				<br>
-				<input type="number" name="seats" class="form-control form-control-lg" min="1" max="6">
+				<input type="number" name="seats" class="form-control form-control-lg" min="1" max="<?php echo $seats?>">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-block">Submit</button>
 			</div>
 		</form>
 	</div>
-
-
-
-	<!-- <div id="map"></div> -->
-
-	<!-- <button onclick="destinationAddress();">Destino</button> -->
-	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQiG0nfV43h4GFJQe2Fkh3VPkaoTjXNA"> -->
-	</script>
 </body>
 
 </html>

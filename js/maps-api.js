@@ -3,12 +3,19 @@ var originlng;
 var destinylat;
 var destinylng;
 
+function saveTrip(e) {
 
-
-
-function showOrigin(e) {
-    // Prevent actual submit
     e.preventDefault();
+
+    var date = document.forms["newTripForm"]["date"].value;
+    var time = document.forms["newTripForm"]["hour"].value;
+    var seats = document.forms["newTripForm"]["seats"].value;
+
+    window.location.href = `./database/new-trip.php?olat=${originlat}&olng=${originlng}&dlng=${destinylat}&dlng=${destinylng}&`;
+
+}
+
+function showOrigin() {
 
     var location = document.getElementById('origin-input').value;
 
@@ -38,9 +45,7 @@ function showOrigin(e) {
         });
 }
 
-function showDestination(e) {
-    // Prevent actual submit
-    e.preventDefault();
+function showDestination() {
 
     var location = document.getElementById('destination-input').value;
 

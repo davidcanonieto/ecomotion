@@ -1,6 +1,4 @@
 <?php
-if (isset($_POST['recarga']) && isset($_POST['password'])) {
-
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -13,11 +11,6 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
     session_start();
 
-    echo $_SESSION['id'];
-    echo $_SESSION['credit'];
-
-    $recarga = $_POST['recarga'];
-    $password = $_POST['password'];
     $id = $_SESSION['id'];
 
     $sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
@@ -34,18 +27,20 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
             $newCredit = $row['wallet'] + $recarga;
 
-            $sql = "UPDATE ecomove.users SET wallet = $newCredit WHERE id = '$id'";
+            
+            $sql = "INSERT INTO trips (trip_code, id, trip_date, start_point, end_point, seats, cost) VALUES ('$email', '$hash', '$name', '$lastname', '$birthdate', '$photo')";
+
 
             $conn->query($sql);
 
-            header("location:../topup.php");
+           
 
         } else {
-            header("location:../topup.php?success=false");
+            
         }
     }
 
     $conn->close();
-}
+
 
 ?>
