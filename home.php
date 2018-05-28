@@ -23,7 +23,12 @@
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$id = $_SESSION['id'];
+		if(isset($_SESSION['id'])) {
+			$id = $_SESSION['id'];
+		} else {
+			header("location:./index.php");
+
+		}
 
 		$sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
 

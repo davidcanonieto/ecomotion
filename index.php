@@ -1,10 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
+    <?php
+        session_start();
+        if (isset($_SESSION['id'])) {
+            header("location:./home.php");
+        }
+    ?>
 	<?php include("pageincludes/bootstrap-head.php"); ?>
 </head>
-
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

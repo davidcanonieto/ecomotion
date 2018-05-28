@@ -11,10 +11,7 @@
 	<script src="./js/maps-api.js"></script>
 
 	<?php
-
 		session_start();
-
-
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
@@ -42,7 +39,6 @@
 			$result1 = $conn->query($sql);
 
 			if ($result1->num_rows > 0) {
-
 				$row1 = $result1->fetch_array(MYSQLI_ASSOC);
 				$seats = $row1['seats'];
 			}
@@ -53,7 +49,6 @@
 		else {
 			echo $conn->error;
 			header("location:./message.php?message=add-car");
-
 		}
 
 		$conn->close();
@@ -78,11 +73,11 @@
 			</div>
 			<div class="form-group">
 				<label for="destination-input">Fecha:</label>
-				<input type="date" name="date" class="form-control form-control-lg">
+				<input type="date" name="date" class="form-control form-control-lg" required>
 				<br>
-				<input type="time" name="hour" class="form-control form-control-lg" value="13:30">
+				<input type="time" name="hour" class="form-control form-control-lg" value="13:30" required>
 				<br>
-				<input type="number" name="seats" class="form-control form-control-lg" min="1" max="<?php echo $seats?>">
+				<input type="number" name="seats" class="form-control form-control-lg" min="1" max="<?php echo $seats?>" required>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-block">Submit</button>

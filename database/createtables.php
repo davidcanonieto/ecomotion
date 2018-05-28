@@ -24,7 +24,6 @@
 				PRIMARY KEY(email)
 				)";
 
-
 		$users = "CREATE TABLE ecomove.users (
 				id int NOT NULL AUTO_INCREMENT,
 				email VARCHAR(50), 
@@ -42,8 +41,6 @@
 		// 		license boolean not null default 0, 
 		// 		FOREIGN KEY(id) REFERENCES users(id)
 		// 		)";
-
-		
 
 		$trips = "CREATE TABLE ecomove.trips (
 				trip_code int NOT NULL AUTO_INCREMENT,

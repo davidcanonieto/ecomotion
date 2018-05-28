@@ -11,8 +11,17 @@ function saveTrip(e) {
     var time = document.forms["newTripForm"]["hour"].value;
     var seats = document.forms["newTripForm"]["seats"].value;
 
-    window.location.href = `./database/new-trip.php?olat=${originlat}&olng=${originlng}&dlng=${destinylat}&dlng=${destinylng}&`;
+    window.location.href = `./database/prepareTrip.php?olat=${originlat}&olng=${originlng}&dlat=${destinylat}&dlng=${destinylng}&seats=${seats}&date=${date}&time=${time}`;
 
+    console.log(`./database/new-trip.php?
+        olat=${originlat}
+        &olng=${originlng}
+        &dlng=${destinylat}
+        &dlng=${destinylng}
+        &seats=${seats}
+        &date=${date}
+        &time=${time}
+    `);
 }
 
 function showOrigin() {

@@ -6,43 +6,12 @@ session_start();
 <head>
 	<?php include "pageincludes/bootstrap-head.php";?>
 	<script src="./js/sidenav.js"></script>
-	<link rel="stylesheet" href="./css/custom-sidenav.css">
+    <link rel="stylesheet" href="./css/custom-sidenav.css">
+    <link rel="stylesheet" href="./css/maps.css">
 </head>
 <body>
 
-	<!-- <?php include "pageincludes/nav.php";?> -->
-
-	<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-$conn = mysqli_connect($servername, $username, $password);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$id = $_SESSION['id'];
-
-$sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-
-    $row = $result->fetch_array(MYSQLI_ASSOC);
-
-    $_SESSION['name'] = $row['name'];
-    $_SESSION['profileImage'] = $row['foto'];
-}
-
-$conn->close();
-?>
-
-
 	<?php include "pageincludes/sidenav.php";?>
-
 
 	<div id="main">
 		<h1 class="text-center logo-title mt-1 mb-5">EcoMotion</h1>
@@ -55,8 +24,13 @@ $conn->close();
                 if ($_GET["message"] == 'reservation') {
                     include "pageincludes/reservation.php";
                 }
+                if ($_GET["message"] == 'upload-trip') {
+                    include "pageincludes/uploadTrip.php";
+                }
+
             }
         ?>
+    </div>
 
     <?php include "pageincludes/bootstrap-body.php";?>
 

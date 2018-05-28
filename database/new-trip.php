@@ -2,8 +2,9 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
+    $dbname = "ecomove";
 
-    $conn = mysqli_connect($servername, $username, $password);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -11,9 +12,24 @@
 
     session_start();
 
+    $olat = $_GET["olat"];
+    $olng = $_GET["olng"];
+    $dlat = $_GET["dlat"];
+    $dlng = $_GET["dlng"];
+
+    $seats = $_GET["seats"];
+    $date = $_GET["date"];
+    $time = $_GET["time"];
+
+    $finalDate = strtotime($time . $date);
+
+
     $id = $_SESSION['id'];
 
-    $sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
+    $origin = '{"OLAT": $olat, "OLNG": $olng}';
+    $destination = '{ "DLAT": $dlat, "DLGN": $dlng}';
+
+    $sql = "SELECT * FROM possessions WHERE id = '$id'";
 
     $result = $conn->query($sql);
 
@@ -21,23 +37,16 @@
 
         $row = $result->fetch_array(MYSQLI_ASSOC);
 
-        if (password_verify($password, $row['password'])) {
+        $sql = "INSERT INTO trips (id, trip_date, start_point, end_point, seats, cost) VALUES ('$id', '$finalDate', '$origin', '$destination', '$seats', 3)";
+        echo $sql;
+        $conn->query($sql);
 
-            $newPassword = password_hash($row['password'], PASSWORD_DEFAULT);
+        echo $conn->error;
 
-            $newCredit = $row['wallet'] + $recarga;
+    }
+    else {
+        echo $conn->error;
 
-            
-            $sql = "INSERT INTO trips (trip_code, id, trip_date, start_point, end_point, seats, cost) VALUES ('$email', '$hash', '$name', '$lastname', '$birthdate', '$photo')";
-
-
-            $conn->query($sql);
-
-           
-
-        } else {
-            
-        }
     }
 
     $conn->close();
