@@ -50,3 +50,5 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
     $conn->close();
 }
+
+?>

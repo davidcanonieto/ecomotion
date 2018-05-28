@@ -28,8 +28,8 @@
 	
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center text-white">
-        © 2018 Copyright:
-        <a href="https://mdbootstrap.com/material-design-for-bootstrap/"> MDBootstrap.com </a>
+        © Copyright <?php echo date("Y");?> - Todos los derechos reservados.
+
     </div>
 
 

@@ -23,7 +23,12 @@
 			die("Connection failed: " . mysqli_connect_error());
 		}
 
-		$id = $_SESSION['id'];
+		if(isset($_SESSION['id'])) {
+			$id = $_SESSION['id'];
+		} else {
+			header("location:./index.php");
+
+		}
 
 		$sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
 
@@ -56,8 +61,8 @@
 					<img class="mx-auto img-profile" src="./images/profilePictures/<?php echo $_SESSION['profileImage']?>">
 				</div>
 				<div class="col-12 col-sm-6 text-center">
-					<a href="" class="btn btn-warning home-button mb-3">Buscar Viajes</a>
-					<a href="" class="btn btn-warning home-button mb-3">Nuevo Viaje</a>
+					<a href="./findTrip.php" class="btn btn-warning home-button mb-3">Buscar Viajes</a>
+					<a href="./newTrip.php" class="btn btn-warning home-button mb-3">Nuevo Viaje</a>
 				</div>
 			</div>
 		</div>
