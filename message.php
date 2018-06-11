@@ -18,16 +18,43 @@ session_start();
 
         <?php
             if (isset($_GET["message"])) {
-                if ($_GET["message"] == 'add-car') {
-                    include "pageincludes/addCar.php";
-                }
-                if ($_GET["message"] == 'reservation') {
-                    include "pageincludes/reservation.php";
-                }
-                if ($_GET["message"] == 'upload-trip') {
-                    include "pageincludes/uploadTrip.php";
-                }
 
+                $message = $_GET["message"];
+
+                switch($message) {
+                    case 'add-car': 
+                        include "pageincludes/addCar.php";
+                        break;
+                    case 'reservation': 
+                        include "pageincludes/reservation.php";
+                        break;
+                    case 'upload-trip': 
+                        include "pageincludes/uploadTrip.php";
+                        break;
+                    case 'error': 
+                        include "pageincludes/error.php";
+                        break;
+                    case 'save-trip': 
+                        include "pageincludes/trip-saved.php";
+                        break;
+                    case 'topup': 
+                        include "pageincludes/topup.php";
+                        break;
+                    case 'withdraw': 
+                        include "pageincludes/withdraw.php";
+                        break;
+                    case 'bookedTrip': 
+                        include "pageincludes/bookedTrip.php";
+                        break;
+                    case 'noTrips': 
+                        include "pageincludes/noTripsFound.php";
+                        break;
+                    default:
+                        include "pageincludes/error.php";
+                }
+            }
+            else {
+                include "pageincludes/error.php";
             }
         ?>
     </div>

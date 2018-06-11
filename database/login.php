@@ -21,7 +21,6 @@
 
 	$result = $conn->query($sql);
 
-
 	if ($result->num_rows > 0) { 
 
 		$row = $result->fetch_array(MYSQLI_ASSOC);
@@ -32,8 +31,7 @@
 			$_SESSION['id'] = $row['id'];
 			$_SESSION['start'] = time();
 			$_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
-			
-
+		
 			if (password_needs_rehash($row['password'], PASSWORD_DEFAULT)) {
 
 				//EN CASO DE QUE EL HASH DEL PASSWORD NECESITE SER RESHEADO
@@ -46,26 +44,12 @@
 			}
 
 			header("location:../home.php");
-			
 		}
 		else{
-			// echo "Username o Password incorrectos.";
-
-			// echo "<br><a href='login.html'>Volver a Intentarlo</a>";
-
 			header("location:../index.php?success=false");
-			
 		}
-
-
-
 	} 
 	else { 
-
-		// echo "Username o Password incorrectos.";
-
-		// echo "<br><a href='login.html'>Volver a Intentarlo</a>";
-
 		header("location:../index.php?success=false");
 	}
 	 

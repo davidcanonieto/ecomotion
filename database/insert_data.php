@@ -21,7 +21,7 @@
     $sql .= "INSERT INTO categories (cat_code, fuel) VALUES ('04', 'diesel');";
 
     if (mysqli_multi_query($conn, $sql)) {
-        echo "Añadido";
+        header("location:../backOffice.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

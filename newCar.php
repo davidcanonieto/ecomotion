@@ -8,6 +8,9 @@
 
 <body>
 
+    <?php include "pageincludes/sidenav.php";?>
+
+
     <div class="login-form">
         <img src="http://daw1.hol.es/images/lizard2.png" class="img-fluid img-signup mx-auto">
         <form action="database/insert_car.php" method="post" autocomplete="on" name="register" enctype="multipart/form-data">

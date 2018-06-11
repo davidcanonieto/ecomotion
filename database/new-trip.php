@@ -12,44 +12,30 @@
 
     session_start();
 
-    $olat = $_GET["olat"];
-    $olng = $_GET["olng"];
-    $dlat = $_GET["dlat"];
-    $dlng = $_GET["dlng"];
-
-    $seats = $_GET["seats"];
-    $date = $_GET["date"];
-    $time = $_GET["time"];
-
-    $finalDate = strtotime($time . $date);
-
-
     $id = $_SESSION['id'];
+    $olat = $_SESSION["olat"];
+    $olng = $_SESSION["olng"];
+    $dlat = $_SESSION["dlat"];
+    $dlng = $_SESSION["dlng"];
+    $time = $_SESSION["time"];
+    $date = $_SESSION["date"];
+    $seats = $_SESSION["seats"];
+    $cost = $_GET["code"];
 
-    $origin = '{"OLAT": $olat, "OLNG": $olng}';
-    $destination = '{ "DLAT": $dlat, "DLGN": $dlng}';
+    $sql = "INSERT INTO trip_details (id, trip_date, trip_time, origin_lat, origin_lng, destiny_lat, destiny_lng, seats, cost) 
+            VALUES ('$id', '$date', '$time', '$olat', '$olng', '$dlat', '$dlng', '$seats', $cost)";
 
-    $sql = "SELECT * FROM possessions WHERE id = '$id'";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-
-        $sql = "INSERT INTO trips (id, trip_date, start_point, end_point, seats, cost) VALUES ('$id', '$finalDate', '$origin', '$destination', '$seats', 3)";
-        echo $sql;
-        $conn->query($sql);
-
-        echo $conn->error;
+    if ($conn->query($sql) === TRUE) {
+        header("location:../message.php?message=save-trip");
 
     }
     else {
+        echo $sql;
+        echo '<br>';
         echo $conn->error;
+        header("location:../message.php?message=error");
 
     }
 
     $conn->close();
-
-
 ?>

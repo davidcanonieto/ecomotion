@@ -45,20 +45,22 @@ session_start();
 
 <body>
 
-    <!-- <?php include "pageincludes/nav.php";?> -->
-
-
     <?php include "pageincludes/sidenav.php";?>
 
     <div id="main">
         <h1 class="text-center logo-title mt-1 mb-5">EcoMotion</h1>
 
-    <img src="./images/appPictures/paypal.png" class="img-paypal">
-    <p class="text-center mb-0">Saldo actual: <?php echo $_SESSION['credit'] ?> €</p>
+        <img src="./images/appPictures/paypal.png" class="img-paypal">
+        <p class="text-center mb-0">Saldo actual: <?php echo $_SESSION['credit'] ?> €</p>
 
-    </div>
-    <div class="login-form mt-3">
+        <div class="login-form mt-3">
         <form action="database/top-up.php" method="post">
+            <div class="text-center mb-5">
+                <div class="btn-group" role="group">
+                    <a class="btn btn-primary px-5 active" href="#">Recarga</a>
+                    <a class="btn btn-primary px-5" href="./withdraw.php">Retirar</a>
+                </div>
+            </div>
         <?php
             if (isset($_GET["success"]) && $_GET["success"] == 'false') {
                 echo '<div class="alert alert-danger alert-dismissible">
@@ -68,23 +70,26 @@ session_start();
             }
         ?>
 
-            <div class="form-group text-center">
-                <label for="recarga" class="text-center">Recarga</label>
-                <input type="number" step="any" min="0" max="100" class="form-control text-center" name="recarga" placeholder="10.00€" required>
+        <div class="form-group text-center">
+            <label for="recarga" class="text-center">Recarga</label>
+            <input type="number" step="any" min="0" max="100" class="form-control text-center" name="recarga" placeholder="10.00€" required>
+        </div>
+        <hr>
+        <div class="form-group">
+            <p class="text-center"><?php echo $_SESSION['email'] ?></p>
             </div>
-            <hr>
             <div class="form-group">
-                <p class="text-center"><?php echo $_SESSION['email'] ?></p>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control text-center" name="password" placeholder="Contraseña" required>
-                </div>
-                <button type="submit" class="btn btn-block btn-primary">Recargar Saldo</button>
+                <input type="password" class="form-control text-center" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">Recargar Saldo</button>
         </form>
     </div>
 
     <p class="text-center">(*)Se realizará un cargo a la cuenta PayPal que tienes asociada a EcoMotion</p>
 
+
+    </div>
+    
 
     <?php include "pageincludes/footer.php";?>
 

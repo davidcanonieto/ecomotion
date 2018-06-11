@@ -41,7 +41,7 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
             $conn->query($sql);
 
-            header("location:../topup.php");
+            header("location:../message.php?message=topup");
 
         } else {
             header("location:../topup.php?success=false");

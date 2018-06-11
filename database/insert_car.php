@@ -18,12 +18,12 @@
 
         $id = $_SESSION['id'];
 
-        $marca = $_POST['marca'];
-        $modelo = $_POST['modelo'];
-        $matricula = $_POST['matricula'];
+        $marca = ucfirst($_POST['marca']);
+        $modelo = ucfirst($_POST['modelo']);
+        $matricula = strtoupper($_POST['matricula']);
         $year = $_POST['year'];
         $type = $_POST['combustible'];
-        $plazas = $_POST['plazas'];
+        $plazas = $_POST['plazas'] - 1;
 
         $sql = "SELECT * FROM cars WHERE license_plate = '$matricula'";
 
@@ -47,16 +47,7 @@
                     $uploadOk = 0;
                 }
             }
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-            // Check file size
-            if ($_FILES["fileToUpload"]["size"] > 500000) {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
-            }
+            
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
@@ -74,11 +65,10 @@
                     echo "Sorry, there was an error uploading your file.";
                 }
             }
-            
-                $photo = "default.png";
+                $photo = "default.jpg";
 
             if ($_FILES["fileToUpload"]["name"] != "") {
-                $photo = $_FILES["foto"]["name"];
+                $photo = $_FILES["fileToUpload"]["name"];
             }
 
             $sql = "INSERT INTO cars (maker, model, year, seats, license_plate, cat_code, picture) VALUES ('$marca', '$modelo', '$year', '$plazas', '$matricula', '$type', '$photo')";

@@ -1,10 +1,13 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="./home.php">Home</a>
-    <a href="./topup.php">Recargar saldo</a>
-    <a href="./newCar.php">Nuevo coche</a>
-    <a href="#" data-toggle="modal" data-target="#exampleModal">Cerrar sesión</a>
+    <a href="./home.php"><i class="material-icons">home</i> Home</a>
+    <a href="./topup.php"><i class="material-icons">payment</i> Recargar saldo</a>
+    <a href="./withdraw.php"><i class="material-icons">attach_money</i> Retirar saldo</a>
+    <a href="./myTrips.php"><i class="material-icons">directions_car</i> Mis viajes</a>
+    <a href="./preferences.php"><i class="material-icons">settings</i> Ajustes</a>
+    <!-- <a href="./newCar.php"><i class="material-icons">directions_car</i> Nuevo coche</a> -->
+    <a href="#" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">close</i> Cerrar sesión</a>
 </div>
 
 <span onclick="openNav()" class="menu-button">&#9776;</span>
