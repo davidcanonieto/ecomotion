@@ -3,21 +3,20 @@
 	session_start();
 	/*ACCESO A LA BASE DE DATOS*/
 	
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+	require 'config.ini.php';
 
-	$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 
-	if (!$conn) {
-	    die("Connection failed: " . mysqli_connect_error());
-	}
 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 
-	$sql = "SELECT * FROM ecomove.users WHERE email = '$email'";
+	$sql = "SELECT * FROM users WHERE email = '$email'";
 
 	$result = $conn->query($sql);
 
@@ -38,7 +37,7 @@
 
 				$newPassword = password_hash($row['password'], PASSWORD_DEFAULT);
 
-				$sql = "UPDATE ecomove.users SET password = '" + $newPassword + "' WHERE email = '$email'";
+				$sql = "UPDATE users SET password = '" + $newPassword + "' WHERE email = '$email'";
 
 				$conn->query($sql);
 			}

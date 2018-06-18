@@ -82,7 +82,7 @@ function initMap() {
 
             console.log(response);
 
-            cost = response.rows[0].elements[0].duration.value * 0.005;
+            cost = (response.rows[0].elements[0].duration.value * 0.005) * 0.7;
             cost = cost.toFixed(2);
 
             document.getElementById("origin").innerHTML = response.originAddresses;

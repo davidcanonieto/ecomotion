@@ -4,17 +4,14 @@
 
     if (isset($_POST['marca']) && isset($_POST['modelo']) && isset($_POST['year']) && isset($_POST['matricula'])) {
         
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "ecomove";
+        require 'config.ini.php';
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 
         $id = $_SESSION['id'];
 

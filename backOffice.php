@@ -13,15 +13,15 @@
 	<div class="container backoffice">
 		<h1 class="text-center logo-title mt-5 mb-2">EcoMotion</h1>
 		<h3 class="text-center mt-1 mb-5">Back Office</h3>
-		<!-- <a href="./database/createtables.php" class="btn btn-warning center-block">Crear Base de Datos</a>
-		<hr>
+		<a href="./database/createtables.php" class="btn btn-warning btn-block">Crear Base de Datos</a>
+		<!--<hr>
 		<a href="./database/insert_data.php" class="btn btn-warning center-block">Rellenar tablas para Demo</a>
 		<hr>
 		<a href="./database/deleteDB.php" class="btn btn-warning center-block">Borrar Base de Datos</a> -->
 
-		<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#create">
+		<!-- <a type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#create">
 		Crear Base de Datos
-		</button>
+</a> -->
 
 		<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
@@ -88,7 +88,6 @@
 
 		<div class="mt-4">
 			<?php include "pageincludes/admin-stats.php";?>
-
 		</div>
 		
 

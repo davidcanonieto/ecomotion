@@ -5,17 +5,9 @@
 		 	
 				/*ACCESO A LA BASE DE DATOS*/
 			
-				$servername = "localhost";
-				$username = "root";
-				$password = "";
-				$dbname ="ecomove";
+				require './database/dbConnection.php';
+				$conn = newDBConnection();
 
-				$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-				if (!$conn) {
-					die("Connection failed: " . mysqli_connect_error());
-				}
 
 				$email = $_POST['email'];
 				$password = $_POST['password'];

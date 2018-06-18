@@ -6,19 +6,17 @@
     $destinationLng = $_GET["dlng"];
     $seats = $_GET["seats"];
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecomove";
+    require 'config.ini.php';
+
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
 
     $trips = array();
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
 
     $radius = 0.007;
 
@@ -54,16 +52,6 @@
         $minDeLng = floatval($destinationLng) + $radius;
     }
 
-    // $maxOrLat = floatval($originLat) + 0.005;
-    // $minOrLat = floatval($originLat) - 0.005;
-    // $maxOrLng = floatval($originLng) + 0.005;
-    // $minOrLng = floatval($originLng) - 0.005;
-
-    // $maxDeLat = floatval($destinationLat) + 0.005;
-    // $minDeLat = floatval($destinationLat) - 0.005;
-    // $maxDeLng = floatval($destinationLng) + 0.005;
-    // $minDeLng = floatval($destinationLng) - 0.005;
-
     $sql = "    SELECT * FROM trip_details
                             WHERE origin_lat >= $minOrLat
                                     AND origin_lat <= $maxOrLat
@@ -73,7 +61,8 @@
                                     AND destiny_lat <= $maxDeLat
                                     AND destiny_lng >= $minDeLng
                                     AND destiny_lng <= $maxDeLng
-                                    AND seats >= $seats";
+                                    AND seats >= $seats
+                                    AND status = 'active'";
 
     if ($result = mysqli_query($conn, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {

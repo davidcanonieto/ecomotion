@@ -1,15 +1,15 @@
 <?php
 if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+   require 'config.ini.php';
 
-    $conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
 
     session_start();
 
@@ -24,7 +24,7 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
     $password = $_POST['password'];
     $id = $_SESSION['id'];
 
-    $sql = "SELECT * FROM ecomove.users WHERE id = '$id'";
+    $sql = "SELECT * FROM users WHERE id = '$id'";
 
     $result = $conn->query($sql);
 
@@ -38,13 +38,14 @@ if (isset($_POST['recarga']) && isset($_POST['password'])) {
 
             $newCredit = $row['wallet'] + $recarga;
 
-            $sql = "UPDATE ecomove.users SET wallet = $newCredit WHERE id = '$id'";
+            $sql = "UPDATE users SET wallet = $newCredit WHERE id = '$id'";
 
             $conn->query($sql);
 
             header("location:../bookTrip.php?id=$tripCode&seats=$seats");
 
         } else {
+            header("location:../bookTrip.php?id=$tripCode&seats=$seats&error=password");
 
         }
     } 

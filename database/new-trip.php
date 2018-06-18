@@ -1,14 +1,13 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecomove";
+    require 'config.ini.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
 
     session_start();
 

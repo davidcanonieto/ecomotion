@@ -1,18 +1,21 @@
 <?php  
 
 	if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['password1']) && isset($_POST['date'])) {
+		
 
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "ecomove";
+		if (!defined('DB_SERVER')) {
+			require 'config.ini.php';
 
-		$conn = new mysqli($servername, $username, $password, $dbname);
-
-		// Check connection
-		if (!$conn) {
-			die("Connection failed: " . mysqli_connect_error());
 		}
+
+
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
 
 		$name = ucfirst($_POST['fname']);
 		$lastname = ucfirst($_POST['lname']);

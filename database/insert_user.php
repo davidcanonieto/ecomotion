@@ -1,15 +1,14 @@
 <?php  
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
+	require 'config.ini.php';
 
-	$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 
-	// Check connection
-	if (!$conn) {
-	    die("Connection failed: " . mysqli_connect_error());
-	}
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
 
 	$name = $_POST['name'];
 	$lastname = $_POST['lastname'];
@@ -22,13 +21,13 @@
 
 	//Insert User to the database
 
-	$sql = "SELECT * FROM ecomove.users WHERE email = '$email'";
+	$sql = "SELECT * FROM users WHERE email = '$email'";
 
 	$result = $conn->query($sql);
 
 
 	if ($result->num_rows == 0) { 
-		$sql = "INSERT INTO ecomove.users (email, password, name, lastname, birthdate) VALUES ('$email', '$hash', '$name', '$lastname', '$birthday')";
+		$sql = "INSERT INTO users (email, password, name, lastname, birthdate) VALUES ('$email', '$hash', '$name', '$lastname', '$birthday')";
 
 		if ($conn->query($sql) === TRUE) {
 
@@ -46,6 +45,7 @@
 	
 
 	$conn->close();
+
 
 
 

@@ -1,14 +1,11 @@
 
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecomove";
+    require 'database/config.ini.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
+    
 
-    // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -60,6 +57,37 @@
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
+    $active = 0;
+
+    $sql = "SELECT * FROM trip_details WHERE status = 'active'";
+
+  if ($result = mysqli_query($conn, $sql)) {
+
+      $active = mysqli_num_rows($result);
+
+      // while ($row = mysqli_fetch_assoc($result)) {
+      //     $wallet += $row['wallet'];
+      // }
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+  $finished = 0;
+
+    $sql = "SELECT * FROM trip_details WHERE status = 'finished'";
+
+  if ($result = mysqli_query($conn, $sql)) {
+
+      $finished = mysqli_num_rows($result);
+
+      // while ($row = mysqli_fetch_assoc($result)) {
+      //     $wallet += $row['wallet'];
+      // }
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+
 ?>
 
 
@@ -84,11 +112,11 @@
     </tr>
      <tr>
       <th scope="row">Viajes realizados</th>
-      <td></td>
+      <td><?php echo $finished ?></td>
     </tr>
      <tr>
       <th scope="row">Viajes planificados</th>
-      <td></td>
+      <td><?php echo $active ?></td>
     </tr>
     <tr>
       <th scope="row">Cartera total</th>

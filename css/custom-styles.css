@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
-
 body, html {
     height: 100%;
+}
+
+html {
+    font-size: 1.5rem;
 }
 
 #main {
@@ -12,15 +15,40 @@ body, html {
 
 .login-form {
     width: 400px;
-    margin: 50px auto;
+    margin: 100px auto;
 }
 
-.login-form form {
-    margin-bottom: 15px;
-    background: #f7f7f7cc;
+.form-app {
+    padding: 30px 0;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.login-form .btn, .signup-form .btn, .form-app .btn {
+    width: 200px;
+}
+
+.signup-form {
+    width: 80%;
+    margin: 100px auto;
+}
+
+/* .signup-form form {
+    border-radius: 10px; 
+    margin-bottom: 50px;
+    background: #f7f7f7e7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
-}
+} */
+
+/* 
+.login-form form {
+    border-radius: 10px; 
+    margin-bottom: 50px;
+    background: #f7f7f7e7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+} */
 
 .login-form h2 {
     margin: 0 0 15px;
@@ -43,8 +71,7 @@ body, html {
     margin: 0 0 15px;
 }
 
-.form-control,
-.btn {
+.form-control, .btn {
     min-height: 38px;
     border-radius: 2px;
 }
@@ -54,8 +81,15 @@ body, html {
     font-weight: bold;
 }
 
+.icon-trips {
+    width: 50%;
+    display: block;
+    margin: 30px auto;
+}
+
 .img-login {
-    width: 80%;
+    width: 70%;
+    max-width: 300px;
     margin: 0 auto;
     display: block;
     margin-bottom: 30px;
@@ -81,15 +115,14 @@ body, html {
 
 .logo-title {
     font-family: 'Bungee Shade', cursive;
-    font-size: 60px; 
+    font-size: 60px;
 }
 
 .login-title {
     font-family: 'Bungee Shade', cursive;
-    
 }
 
-.profile-image {
+.profile-image {
     border: 1px solid red;
     width: 200px;
     height: 200px;
@@ -99,17 +132,25 @@ body, html {
 }
 
 .img-profile {
-   height: 100%;
+    height: 100%;
 }
 
 .center-block {
-   margin-left: auto;
-   margin-right: auto;
-   display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .text-center {
-   text-align: center
+    text-align: center
+}
+
+.title {
+    font-size: 25px;
+}
+
+.wallet {
+    font-size: 40px;
 }
 
 .home-button {
@@ -131,8 +172,8 @@ body, html {
 }
 
 .image-cropper {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -154,12 +195,58 @@ body, html {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.mdl-layout__drawer {
+    border: 0 !important;
+}
+
+.user-icon {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.img-car-info {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
 .bg {
-    background-image: url("../images/appPictures/tesla-3.jpg");
+    background-image: url("../images/appPictures/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-bottom: 30px;
+}
+
+#bg {
+    z-index: -1;
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+#bg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+.profile-picture-background {
+    width: 150px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:  cover;
+    margin: 0 auto;
+    border-radius: 100%;
 }
 
 .footer-background {
@@ -171,19 +258,24 @@ body, html {
     border-radius: 5%;
 }
 
-.btn-primary {
-    background-color: #004d40;
-    border-color: #004d40;
+#fileToUpload {
+    visibility: hidden;
 }
 
-.btn-primary:hover {
-    background-color: #002e26;
-    border-color: #002e26;
+.padding-form {
+    padding: 0 70px;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    background-color: #002e26;
-    border-color: #002e26;
+.is-valid {
+    border-bottom: 1px solid #ced4da !important;
+}
+
+.is-invalid {
+    border-bottom: 2px solid #9e0000 !important;
+}
+
+.background-color-index {
+    background-color: #01579b;
 }
 
 a {
@@ -194,30 +286,53 @@ footer a {
     color: white;
 }
 
-@media only screen and (max-width: 600px) {
+.trips-buttons img {
+    width: 50px;
+    padding: 15px 5px 0 5px;
+    
+}
 
+@media only screen and (max-width: 600px) {
+    /* * {
+        font-size: 105%;
+    } */
+    html {
+        font-size: 1.6rem;
+    }
     .image-cropper {
-        width: 200px;
-        height: 200px;
+        width: 130px;
+        height: 130px;
     }
     .img-profile {
         width: 80%;
     }
-
     .img-paypal {
         width: 80%;
     }
-
     .logo-title {
-        font-size: 35px; 
+        font-size: 35px;
     }
     .home-button {
         width: 90%;
         display: block;
         margin: 0 auto;
     }
-
-    .login-form {
-        width: 90%; 
+    .login-form, .signup-form {
+        margin-top: 30px;
+        padding: 0 15px;
+        width: 90%;
+    }
+    .form-app {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .padding-form {
+        padding: 0;
+    }
+    .login-form .btn, .signup-form .btn {
+        width: 300px;
+    }
+    .btn-mobile {
+        max-width: 100%;
     }
 }

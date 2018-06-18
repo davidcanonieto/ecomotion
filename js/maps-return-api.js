@@ -40,13 +40,13 @@ function initMap() {
             } else {
                 console.log(response);
                 var dataToDisplay = "";
-                dataToDisplay += '<div class="col-sm-6 col-xs-12">';
+                dataToDisplay += '<div class="col-12 col-sm-6">';
                 dataToDisplay += '<div class="card">';
                 dataToDisplay += '<div class="card-body">';
-                dataToDisplay += '<h5 class="card-title">' + response.rows[0].elements[0].duration.text +' - '+ data[i].cost + '€</h5>';
+                dataToDisplay += '<h5 class="card-title mb-4">' + response.rows[0].elements[0].duration.text +' - '+ data[i].cost + '€</h5>';
                 dataToDisplay += '<p class="card-text">Origen: ' + response.originAddresses[0] +'</p>';
                 dataToDisplay += '<p class="card-text">Destino: ' + response.destinationAddresses[0] +'</p>';                
-                dataToDisplay += '<button onclick="moreInfo(' + data[i].tripCode +', ' + data[i].seats + ')" class="btn btn-primary">Seleccionar</button>';
+                dataToDisplay += '<div class="text-center my-4"><button onclick="moreInfo(' + data[i].tripCode +', ' + data[i].seats + ')" class="btn btn-primary mx-auto">Seleccionar</button></div>';
                 dataToDisplay += '</div></div></div>';
                 document.getElementById('trips').innerHTML += dataToDisplay;
             }

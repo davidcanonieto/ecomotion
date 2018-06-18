@@ -1,15 +1,15 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+require 'config.ini.php';
 
-    $conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 
-    if (!$conn) {
-        echo 'Connected failure<br>';
-    }
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
     echo 'Connected successfully<br>';
-    $sql = "DROP DATABASE ECOMOVE";
+    $sql = "DROP DATABASE ECOMOTION";
 
     if (mysqli_query($conn, $sql)) {
         header("location:../backOffice.php");

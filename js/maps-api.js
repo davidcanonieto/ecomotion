@@ -13,15 +13,15 @@ function saveTrip(e) {
 
     window.location.href = `./database/prepareTrip.php?olat=${originlat}&olng=${originlng}&dlat=${destinylat}&dlng=${destinylng}&seats=${seats}&date=${date}&time=${time}`;
 
-    console.log(`
-        olat=${originlat}
-        &olng=${originlng}
-        &dlng=${destinylat}
-        &dlng=${destinylng}
-        &seats=${seats}
-        &date=${date}
-        &time=${time}
-    `);
+    // console.log(`
+    //     olat=${originlat}
+    //     &olng=${originlng}
+    //     &dlng=${destinylat}
+    //     &dlng=${destinylng}
+    //     &seats=${seats}
+    //     &date=${date}
+    //     &time=${time}
+    // `);
 }
 
 function findTrip(e) {
@@ -31,13 +31,13 @@ function findTrip(e) {
 
     window.location.href = `./showTrips.php?olat=${originlat}&olng=${originlng}&dlat=${destinylat}&dlng=${destinylng}&seats=${seats}`;
 
-    console.log(`
-        olat=${originlat}
-        &olng=${originlng}
-        &dlng=${destinylat}
-        &dlng=${destinylng}
-        &seats=${seats}
-    `);
+    // console.log(`
+    //     olat=${originlat}
+    //     &olng=${originlng}
+    //     &dlng=${destinylat}
+    //     &dlng=${destinylng}
+    //     &seats=${seats}
+    // `);
 }
 
 function showOrigin() {
@@ -61,9 +61,9 @@ function showOrigin() {
             originlat = response.data.results[0].geometry.location.lat;
             originlng = response.data.results[0].geometry.location.lng;
 
-            console.log(formattedAddress);
+            //console.log(formattedAddress);
             document.getElementById("origin-address").innerHTML = formattedAddress;
-            console.log("Lat: " + originlat + ", lng: " + originlng);
+            //console.log("Lat: " + originlat + ", lng: " + originlng);
         })
         .catch(function (error) {
             console.log(error);
